@@ -12,18 +12,16 @@ cd friend-finder
 
 npm install
 
-npm start
+npm run server
 
 ```
 After running those commands, nagivate to http://localhost:3000/ in your browser.
-
-**Important:** Make sure you run the `npm start` script. This will run a build process I fiddled around with.
 
 ## The Compatibility Algorithm
 
 **1. First we need to see what data is being iterated**
 ```javascript
-const users = [
+var users = [
   {
     name: 'Unobtainiumrock',
     photo: 'https://media.giphy.com/media/pqwPJPgR6qCB2/giphy.gif',
@@ -41,7 +39,7 @@ const users = [
   }
 ];
 ```
-**2. Cross reference with my annotated algorithm**
+**2. Cross reference with my annotated algorithm (Pretty much same logic in ES5 version)**
 <img src ="./readme/annotated-algorithm.png">
 
 
@@ -68,16 +66,4 @@ const users = [
 Math.abs(1 - 2) + Math.abs(2 - 1) + Math.abs(3 - 4)
 ```
 
-**A note about mixing of import and require**
- 
- I was able to sucessfully run a build process with babel (for fun), but I didn't have time to implement webpack for ESM syntax on non-npm modules. Its a simple fix, but time constraints got in the way.
-
-#### Sources on build processes, plus ESM vs CJS
-https://www.jaygould.co.uk/devops/2017/11/14/cloud-deployment-heroku-node-babel.html
-
-https://medium.com/@kimtnguyen/how-to-deploy-es6-node-js-express-back-end-to-heroku-7e6743e8d2ff
-
-https://medium.com/webpack/the-state-of-javascript-modules-4636d1774358
-
-https://blogs.windows.com/msedgedev/2017/08/10/es-modules-node-today/
 

@@ -12,17 +12,17 @@ var htmlRoutes = {
 
   sendSurvey: function(req,res) {
     var body = req.body;
-    res.sendFile(path.join(__dirname,'../../app/public/survey.html'));
+    res.sendFile(path.join(__dirname,'../public/survey.html'));
   },
 
   home: function(req,res) {
     var body = req.body;
-    res.sendFile(path.join(__dirname,'../../app/public/home.html'));
+    res.sendFile(path.join(__dirname,'../public/home.html'));
   },
 
   nonSense: function(req,res) {
     var body = req.body;
-    res.sendFile(path.join(__dirname,'../../app/public/potential-friends.html'));
+    res.sendFile(path.join(__dirname,'../public/potential-friends.html'));
   }
 
 }
