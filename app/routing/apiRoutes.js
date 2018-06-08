@@ -1,43 +1,48 @@
 
-import path from 'path';
-const users = require(path.join(__dirname, '../data/friends'));
+var path = require('path');
+var users = require(path.join(__dirname, '../data/friends'));
 
-class APIRoutes {
+var APIRoutes =  {
 
-  attach(app) {
+  attach: function(app) {
     app.get('/api/friends', this.grabFriends);
     app.post('/api/friends', this.handleSurvey.bind(this));
-  }
+  },
 
-  grabFriends(req, res) {
-    const { body } = req;
+  grabFriends: function(req, res) {
+    var body = req.body;
     res.status(200).json(users);
-  }
+  },
 
-  handleSurvey(req, res) {
-    const { body } = req;
-    let { scores } = body;
-    scores = scores.map(score => parseInt(score));
+  handleSurvey: function(req, res) {
+    var body = req.body;
+    var scores = body.scores;
+    scores = scores.map(function(score) {parseInt(score)});
     body['scores'] = scores;
-    const bestFriend = this.findBestMatch(scores);
+    var bestFriend = this.findBestMatch(scores);
     users.push(body);
     res.status(200).json(bestFriend);
-  }
+  },
 
-  findBestMatch(scores) {
-    const formAnswers = scores;
-    const differences = users.map(user => {
-      return user.scores.reduce((mem, val, idx) => {
+  findBestMatch: function(scores) {
+    var formAnswers = scores;
+    var differences = users.map(function(user) {
+      return user.scores.reduce(function(mem, val, idx) {
         return mem + Math.abs(formAnswers[idx] - val);
       }, 0);
     });
 
-    const indexOfBestMatch = differences.indexOf(Math.min(...differences));
-    const bestMatch = users[indexOfBestMatch];
-    const { name, photo } = bestMatch;
-    return { name, photo };
+    var indexOfBestMatch = differences.indexOf(Math.min.apply(null,differences));
+    var bestMatch = users[indexOfBestMatch];
+    var name = bestMatch.name;
+    var photo = bestMatch.photo;
+    return { name: name, photo: photo };
   }
 
 }
 
-module.exports = new APIRoutes();
+module.exports = APIRoutes;
+
+
+
+
