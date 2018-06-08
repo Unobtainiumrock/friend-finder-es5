@@ -1,10 +1,11 @@
-// Vendor
-import express from 'express';
-import path from 'path';
-import bodyParser from 'body-parser';
 
-const app = express();
-const PORT = process.env.PORT || 3000;
+// Vendor
+var express = require('express');
+var path = require('path');
+var bodyParser = require('body-parser');
+
+var app = express();
+var PORT = process.env.PORT || 3000;
 
 // Middleware
 app.use(express.static(path.join(__dirname,'/public')))
@@ -13,10 +14,10 @@ app.use(bodyParser.json());
 
 
 // Routes 
-const APIRoutes = require(path.join(__dirname,'/routing/apiRoutes'));
+var APIRoutes = require(path.join(__dirname,'/routing/apiRoutes'));
 APIRoutes.attach(app);
 
-const HTMLRoutes = require(path.join(__dirname,'/routing/htmlRoutes'));
+var HTMLRoutes = require(path.join(__dirname,'/routing/htmlRoutes'));
 HTMLRoutes.attach(app);
 
-app.listen(PORT,() => console.log(`Listening on port: ${PORT}`));
+app.listen(PORT,function(){console.log('Listening on port:' + PORT )});
