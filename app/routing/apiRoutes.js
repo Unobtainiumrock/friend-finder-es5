@@ -17,7 +17,7 @@ var APIRoutes =  {
   handleSurvey: function(req, res) {
     var body = req.body;
     var scores = body.scores;
-    scores = scores.map(function(score) {parseInt(score)});
+    scores = scores.map(function(score) {return parseInt(score)});
     body['scores'] = scores;
     var bestFriend = this.findBestMatch(scores);
     users.push(body);
@@ -25,13 +25,14 @@ var APIRoutes =  {
   },
 
   findBestMatch: function(scores) {
+    console.log(`Parameter to findBest: ${scores}`);
     var formAnswers = scores;
     var differences = users.map(function(user) {
       return user.scores.reduce(function(mem, val, idx) {
         return mem + Math.abs(formAnswers[idx] - val);
       }, 0);
     });
-
+    console.log(`After diff logic: ${differences}`);
     var indexOfBestMatch = differences.indexOf(Math.min.apply(null,differences));
     var bestMatch = users[indexOfBestMatch];
     var name = bestMatch.name;
