@@ -1,5 +1,5 @@
 
-const users = [
+var users = [
   {
     name: 'Unobtainiumrock',
     photo: 'https://media.giphy.com/media/pqwPJPgR6qCB2/giphy.gif',
